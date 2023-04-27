@@ -298,3 +298,9 @@ model hello_greeting {
   id   BigInt   @id @default(autoincrement())
   when DateTime @db.Timestamptz(6)
 }
+
+model Example {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
