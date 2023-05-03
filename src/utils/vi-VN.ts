@@ -4,7 +4,7 @@ const commonTexts = {
   signIn: {
     phoneCode: {
       title: "Check your phone",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your phone number",
       resendButton: "Resend code",
@@ -76,14 +76,14 @@ export const viVN: LocalizationResource = {
   membershipRole__guestMember: "Guest",
   signUp: {
     start: {
-      title: "Create your account",
-      subtitle: "to continue to {{applicationName}}",
+      title: "Tạo tài khoản",
+      subtitle: "để tiếp tục với {{applicationName}}",
       actionText: "Have an account?",
       actionLink: "Đăng nhập",
     },
     emailLink: {
       title: "Verify your email",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "Verification link",
       formSubtitle: "Use the verification link sent to your email address",
       resendButton: "Resend link",
@@ -101,21 +101,21 @@ export const viVN: LocalizationResource = {
     },
     emailCode: {
       title: "Verify your email",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your email address",
       resendButton: "Resend code",
     },
     phoneCode: {
       title: "Verify your phone",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your phone number",
       resendButton: "Resend code",
     },
     continue: {
       title: "Fill in missing fields",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       actionText: "Have an account?",
       actionLink: "Đăng nhập",
     },
@@ -123,9 +123,9 @@ export const viVN: LocalizationResource = {
   signIn: {
     start: {
       title: "Đăng nhập",
-      subtitle: "to continue to {{applicationName}}",
-      actionText: "No account?",
-      actionLink: "Sign up",
+      subtitle: "để tiếp tục với {{applicationName}}",
+      actionText: "Không có tài khoản?",
+      actionLink: "Đăng ký",
       actionLink__use_email: "Use email",
       actionLink__use_phone: "Use phone",
       actionLink__use_username: "Use username",
@@ -133,19 +133,19 @@ export const viVN: LocalizationResource = {
     },
     password: {
       title: "Enter your password",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       actionLink: "Use another method",
     },
     emailCode: {
       title: "Check your email",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your email address",
       resendButton: "Resend code",
     },
     emailLink: {
       title: "Check your email",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "Verification link",
       formSubtitle: "Use the verification link sent to your email",
       resendButton: "Resend link",
@@ -185,7 +185,7 @@ export const viVN: LocalizationResource = {
     },
     backupCodeMfa: {
       title: "Enter a backup code",
-      subtitle: "to continue to {{applicationName}}",
+      subtitle: "để tiếp tục với {{applicationName}}",
       formTitle: "",
       formSubtitle: "",
     },
