@@ -217,9 +217,9 @@ export const viVN: LocalizationResource = {
     formButtonPrimary__finish: "Finish",
     formButtonReset: "Cancel",
     start: {
-      headerTitle__account: "Account",
+      headerTitle__account: "Tài khoản",
       headerTitle__security: "Security",
-      headerSubtitle__account: "Manage your account information",
+      headerSubtitle__account: "Quản lý thông tin tài khoản",
       headerSubtitle__security: "Manage your security preferences",
       profileSection: {
         title: "Profile",
