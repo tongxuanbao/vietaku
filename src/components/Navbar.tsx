@@ -71,6 +71,8 @@ function User() {
               <Menu.Button className="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-2">
                 <span className="sr-only">Open user menu</span>
                 <Image
+                  width={28}
+                  height={28}
                   className="h-7 w-7 rounded-full"
                   src={user?.profileImageUrl ?? "/default_avatar.svg"}
                   alt=""
@@ -147,6 +149,8 @@ export default function Navbar() {
                   <div className="flex flex-shrink-0 items-center">
                     <Link href="#">
                       <Image
+                        height={32}
+                        width={160}
                         className="block h-8 w-auto"
                         src="/logo.svg"
                         alt="Your Company"
