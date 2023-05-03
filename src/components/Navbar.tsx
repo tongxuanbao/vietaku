@@ -24,24 +24,26 @@ import {
 import {
   SignedIn,
   SignedOut,
-  UserButton,
+  // UserButton,
   ClerkLoaded,
   ClerkLoading,
   useUser,
 } from "@clerk/nextjs";
+import Link from "next/link";
+import Image from "next/image";
 
-const user = {
-  name: "Chelsea Hagon",
-  email: "chelsea.hagon@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Calendar", href: "#", current: false },
-  { name: "Teams", href: "#", current: false },
-  { name: "Directory", href: "#", current: false },
-];
+// const user = {
+//   name: "Chelsea Hagon",
+//   email: "chelsea.hagon@example.com",
+//   imageUrl:
+//     "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+// };
+// const navigation = [
+//   { name: "Dashboard", href: "#", current: true },
+//   { name: "Calendar", href: "#", current: false },
+//   { name: "Teams", href: "#", current: false },
+//   { name: "Directory", href: "#", current: false },
+// ];
 const userNavigation = [
   { name: "Your Profile", href: "/user" },
   { name: "Settings", href: "#" },
@@ -88,7 +90,7 @@ function User() {
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
-                      <a
+                      <Link
                         href={item.href}
                         className={classNames(
                           active ? "bg-gray-100" : "",
@@ -96,7 +98,7 @@ function User() {
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 ))}
@@ -109,13 +111,13 @@ function User() {
         <SignedOut>
           <div className="relative ml-5 flex-shrink-0 text-gray-400 hover:text-gray-500">
             <div>
-              <a
+              <Link
                 href="/sign-in"
                 className="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-2"
               >
                 <span className="sr-only">Open user menu</span>
                 <UserIcon className="h-6 w-6 rounded-full" />
-              </a>
+              </Link>
             </div>
           </div>
         </SignedOut>
@@ -143,13 +145,13 @@ export default function Navbar() {
               <div className="relative flex justify-between lg:gap-8 xl:grid xl:grid-cols-12">
                 <div className="flex md:absolute md:inset-y-0 md:left-0 lg:static xl:col-span-2">
                   <div className="flex flex-shrink-0 items-center">
-                    <a href="#">
-                      <img
+                    <Link href="#">
+                      <Image
                         className="block h-8 w-auto"
                         src="/logo.svg"
                         alt="Your Company"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
