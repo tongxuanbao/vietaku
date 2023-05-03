@@ -70,7 +70,7 @@ function User() {
             <div>
               <Menu.Button className="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-2">
                 <span className="sr-only">Open user menu</span>
-                <img
+                <Image
                   className="h-7 w-7 rounded-full"
                   src={user?.profileImageUrl ?? "/default_avatar.svg"}
                   alt=""
