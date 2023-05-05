@@ -3,15 +3,19 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { viVN } from "~/utils/vi-VN";
-import Navbar from "~/components/Navbar";
+// import Navbar from "~/components/Navbar";
+import Layout from "~/components/Layout";
 
 const MyApp: AppType = ({ Component, pageProps }: AppProps) => {
   return (
     <ClerkProvider localization={viVN} {...pageProps}>
-      <Navbar />
+      {/* <Navbar />
       <main className="bg-grey-900 flex min-h-screen flex-col items-center justify-center">
         <Component {...pageProps} />
-      </main>
+      </main> */}
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ClerkProvider>
   );
 };
