@@ -6,16 +6,24 @@ import { viVN } from "~/utils/vi-VN";
 // import Navbar from "~/components/Navbar";
 import Layout from "~/components/Layout";
 
-const MyApp: AppType = ({ Component, pageProps }: AppProps) => {
+const standalonePages = ["/sign-in", "/sign-up"];
+const MyApp: AppType = ({ Component, pageProps, ...appProps }: AppProps) => {
   return (
     <ClerkProvider localization={viVN} {...pageProps}>
       {/* <Navbar />
       <main className="bg-grey-900 flex min-h-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main> */}
-      <Layout>
+      {standalonePages.includes(appProps.router.pathname) ? (
         <Component {...pageProps} />
-      </Layout>
+      ) : (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
+      {/* <Layout>
+        <Component {...pageProps} />
+      </Layout> */}
     </ClerkProvider>
   );
 };
