@@ -17,31 +17,30 @@ import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   BellIcon,
-  ChartPieIcon,
   Cog6ToothIcon,
   HomeIcon,
-  UsersIcon,
+  UserIcon,
   XMarkIcon,
   FilmIcon,
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
-import { SignOutButton } from "@clerk/nextjs";
+  SignOutButton,
+  useUser,
+  SignedIn,
+  SignedOut,
+  ClerkLoading,
+  ClerkLoaded,
+} from "@clerk/nextjs";
 import Link from "next/link";
 
 const navigation = [
-  { name: "Trang Chủ", href: "#", icon: HomeIcon, current: true },
-  { name: "Anime", href: "#", icon: FilmIcon, current: false },
-  { name: "Truyện Tranh", href: "#", icon: BookOpenIcon, current: false },
+  { name: "Trang Chủ", href: "/", icon: HomeIcon, current: true },
+  { name: "Anime", href: "/anime", icon: FilmIcon, current: false },
+  { name: "Truyện Tranh", href: "/manga", icon: BookOpenIcon, current: false },
 ];
-const teams = [
-  { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-  { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-  { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
-];
+
 const userNavigation = [
   {
     name: "Your profile",
@@ -55,23 +54,73 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+function User() {
+  const { user } = useUser();
+  return (
+    <div className="rounded-full hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-zinc-900">
+      <ClerkLoading>
+        <UserIcon className="h-8 w-8 rounded-full text-zinc-400 hover:text-zinc-300" />
+      </ClerkLoading>
+      <ClerkLoaded>
+        <SignedIn>
+          {/* Profile dropdown */}
+          <Menu as="div" className="relative">
+            <Menu.Button className="-m-1.5 flex items-center p-1.5">
+              <span className="sr-only">Open user menu</span>
+              <img
+                className="h-8 w-8 rounded-full bg-zinc-800"
+                src={user?.profileImageUrl ?? ""}
+                alt=""
+              />
+            </Menu.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-zinc-800 py-2 shadow-lg ring-1 ring-white/5 focus:outline-none">
+                {userNavigation.map((item) => (
+                  <Menu.Item key={item.name}>
+                    {({ active }) => (
+                      <div
+                        className={classNames(
+                          active ? "bg-zinc-700" : "",
+                          "block px-3 py-1 text-sm leading-6 text-white"
+                        )}
+                      >
+                        {/* <item.component /> */}
+                        {/* {item.name} */}
+                        {item.component}
+                      </div>
+                    )}
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </SignedIn>
+        <SignedOut>
+          <Link href="/sign-in">
+            <UserIcon className="h-6 w-6 rounded-full text-zinc-400 hover:text-zinc-300" />
+          </Link>
+        </SignedOut>
+      </ClerkLoaded>
+    </div>
+  );
+}
+
 type LayoutProps = {
   children: ReactNode;
 };
-
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
@@ -88,7 +137,7 @@ export default function Layout({ children }: LayoutProps) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-zinc-900/80" />
+              <div className="fixed inset-0 bg-zinc-800/80" />
             </Transition.Child>
 
             <div className="fixed inset-0 flex">
@@ -161,7 +210,7 @@ export default function Layout({ children }: LayoutProps) {
                             ))}
                           </ul>
                         </li>
-                        <li className="mt-auto">
+                        <li>
                           <a
                             href="#"
                             className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-zinc-400 hover:bg-zinc-800 hover:text-white"
@@ -286,63 +335,7 @@ export default function Layout({ children }: LayoutProps) {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
-                {/* Separator */}
-                <div
-                  className="hidden lg:block lg:h-6 lg:w-px lg:bg-white/10"
-                  aria-hidden="true"
-                />
-
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative">
-                  <Menu.Button className="-m-1.5 flex items-center p-1.5">
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full bg-zinc-800"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-                    {/* <span className="hidden lg:flex lg:items-center">
-                      <span
-                        className="ml-4 text-sm font-semibold leading-6 text-white"
-                        aria-hidden="true"
-                      >
-                        Tom Cook
-                      </span>
-                      <ChevronDownIcon
-                        className="ml-2 h-5 w-5 text-zinc-400"
-                        aria-hidden="true"
-                      />
-                    </span> */}
-                  </Menu.Button>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-zinc-800 py-2 shadow-lg ring-1 ring-white/5 focus:outline-none">
-                      {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <div
-                              className={classNames(
-                                active ? "bg-zinc-700" : "",
-                                "block px-3 py-1 text-sm leading-6 text-white"
-                              )}
-                            >
-                              {/* <item.component /> */}
-                              {/* {item.name} */}
-                              {item.component}
-                            </div>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
+                <User />
               </div>
             </div>
           </div>

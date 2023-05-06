@@ -7,15 +7,18 @@ import { dark } from "@clerk/themes";
 import Layout from "~/components/Layout";
 
 const standalonePages = ["/sign-in", "/sign-up"];
+
+const clerkAppearance = {
+  baseTheme: dark,
+  elements: {
+    card: "bg-zinc-800",
+  },
+};
+
 const MyApp: AppType = ({ Component, pageProps, ...appProps }: AppProps) => {
   return (
     <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-        elements: {
-          card: "bg-zinc-800",
-        },
-      }}
+      appearance={clerkAppearance}
       localization={viVN}
       {...pageProps}
     >
