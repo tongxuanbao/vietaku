@@ -92,8 +92,6 @@ function User() {
                           "block px-3 py-1 text-sm leading-6 text-white"
                         )}
                       >
-                        {/* <item.component /> */}
-                        {/* {item.name} */}
                         {item.component}
                       </div>
                     )}
