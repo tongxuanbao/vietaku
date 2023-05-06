@@ -46,7 +46,7 @@ const userNavigation = [
   {
     name: "Your profile",
     href: "#",
-    component: <a href="/user">User Profile</a>,
+    component: <Link href="/user">User Profile</Link>,
   },
   { name: "Sign out", href: "#", component: <SignOutButton /> },
 ];

@@ -3,13 +3,22 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { viVN } from "~/utils/vi-VN";
-// import Navbar from "~/components/Navbar";
+import { dark } from "@clerk/themes";
 import Layout from "~/components/Layout";
 
 const standalonePages = ["/sign-in", "/sign-up"];
 const MyApp: AppType = ({ Component, pageProps, ...appProps }: AppProps) => {
   return (
-    <ClerkProvider localization={viVN} {...pageProps}>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        elements: {
+          card: "bg-zinc-800",
+        },
+      }}
+      localization={viVN}
+      {...pageProps}
+    >
       {/* <Navbar />
       <main className="bg-grey-900 flex min-h-screen flex-col items-center justify-center">
         <Component {...pageProps} />
