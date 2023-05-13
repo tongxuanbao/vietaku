@@ -34,6 +34,7 @@ import {
   ClerkLoaded,
 } from "@clerk/nextjs";
 import Link from "next/link";
+import SearchBar from "./SearchBar";
 
 const navigation = [
   { name: "Trang Chủ", href: "/", icon: HomeIcon, current: true },
@@ -59,7 +60,7 @@ function User() {
   return (
     <div className="rounded-full hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-zinc-900">
       <ClerkLoading>
-        <UserIcon className="h-8 w-8 rounded-full text-zinc-400 hover:text-zinc-300" />
+        <UserIcon className="h-6 w-6 rounded-full text-zinc-400 hover:text-zinc-300" />
       </ClerkLoading>
       <ClerkLoaded>
         <SignedIn>
@@ -304,7 +305,7 @@ export default function Layout({ children }: LayoutProps) {
             <div className="flex flex-1 place-content-center gap-x-4 self-stretch">
               <div className="flex flex-1 items-center px-2">
                 <div className="mx-auto flex w-full max-w-3xl flex-1 ">
-                  <label htmlFor="search" className="sr-only">
+                  {/* <label htmlFor="search" className="sr-only">
                     Search
                   </label>
                   <div className="relative flex flex-1 ">
@@ -321,7 +322,8 @@ export default function Layout({ children }: LayoutProps) {
                       placeholder="Search"
                       type="search"
                     />
-                  </div>
+                  </div> */}
+                  <SearchBar />
                 </div>
               </div>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
