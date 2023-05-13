@@ -11,7 +11,7 @@ export const animesRouter = createTRPCRouter({
     return ctx.prisma.animes_anime.findMany({
       where: {
         title: {
-          search: `${input}:*`,
+          search: input ? `${input}:*` : "",
           mode: "insensitive",
         },
       },
