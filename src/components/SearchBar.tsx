@@ -56,13 +56,13 @@ export default function SearchBar() {
                 </div>
                 <Combobox.Input
                   className="block w-full rounded-md border-0 bg-zinc-800 py-1.5 pl-10 pr-3 text-white placeholder:text-zinc-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  placeholder="Search..."
+                  placeholder="Tìm kiếm..."
                   onInput={(event: ChangeEvent<HTMLInputElement>) =>
                     setQuery(event.target.value)
                   }
                 />
               </div>
-              {open && (
+              {open && query !== "" && (
                 <Combobox.Options
                   static
                   className="absolute z-10 my-1 flex w-full flex-1 scroll-py-2 flex-col rounded-md bg-zinc-800 py-2 text-sm text-zinc-400"
@@ -83,6 +83,14 @@ export default function SearchBar() {
                       </Combobox.Option>
                     ))}
                 </Combobox.Options>
+              )}
+
+              {query !== "" && animes?.length === 0 && (
+                <div className="absolute z-10 my-1 flex w-full flex-1 scroll-py-2 flex-col rounded-md bg-zinc-800 py-2 text-sm text-zinc-400">
+                  <p className="p-4 text-sm text-gray-500">
+                    Không có kết quả tìm kiếm.
+                  </p>
+                </div>
               )}
             </div>
           )}

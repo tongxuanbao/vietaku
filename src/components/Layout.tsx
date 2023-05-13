@@ -203,7 +203,7 @@ export default function Layout({ children }: LayoutProps) {
                               className="h-6 w-6 shrink-0"
                               aria-hidden="true"
                             />
-                            Settings
+                            Cài Đặt
                           </a>
                         </li>
                       </ul>
@@ -262,7 +262,7 @@ export default function Layout({ children }: LayoutProps) {
                       className="h-6 w-6 shrink-0"
                       aria-hidden="true"
                     />
-                    Settings
+                    Cài Đặt
                   </a>
                 </li>
               </ul>
