@@ -1,17 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState, ReactNode } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
@@ -24,7 +10,6 @@ import {
   FilmIcon,
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
   SignOutButton,
   useUser,

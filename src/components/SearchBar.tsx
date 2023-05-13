@@ -1,20 +1,7 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Combobox } from "@headlessui/react";
+import { api } from "~/utils/api";
 
 const people = [
   { id: 1, name: "Leslie Alexander1", url: "/alex1" },
@@ -34,13 +21,14 @@ function classNames(...classes: (string | boolean)[]) {
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
+  const { data: animes } = api.animes.searchText.useQuery(query);
 
-  const filteredPeople =
-    query === ""
-      ? []
-      : people.filter((person) => {
-          return person.name.toLowerCase().includes(query.toLowerCase());
-        });
+  // const filteredPeople =
+  //   query === ""
+  //     ? []
+  //     : people.filter((person) => {
+  //         return person.name.toLowerCase().includes(query.toLowerCase());
+  //       });
 
   return (
     <div className="flex flex-1 items-center px-2">
@@ -50,7 +38,7 @@ export default function SearchBar() {
         </label>
         <Combobox
           as="div"
-          onChange={(person) => (window.location = person.url)}
+          onChange={(anime) => (window.location = `anime/${anime.mal_id}`)}
         >
           {({ open }) => (
             <div className="relative">
@@ -64,7 +52,7 @@ export default function SearchBar() {
                 <Combobox.Input
                   className="block w-full rounded-md border-0 bg-zinc-800 py-1.5 pl-10 pr-3 text-white placeholder:text-zinc-400 focus:ring-0 sm:text-sm sm:leading-6"
                   placeholder="Search..."
-                  onChange={(event) => setQuery(event.target.value)}
+                  onInput={(event) => setQuery(event.target.value)}
                 />
               </div>
               {open && (
@@ -72,20 +60,21 @@ export default function SearchBar() {
                   static
                   className="absolute z-10 my-1 flex w-full flex-1 scroll-py-2 flex-col rounded-md bg-zinc-800 py-2 text-sm text-zinc-400"
                 >
-                  {filteredPeople.map((person) => (
-                    <Combobox.Option
-                      key={person.id}
-                      value={person}
-                      className={({ active }) =>
-                        classNames(
-                          "cursor-default select-none px-4 py-2",
-                          active && "bg-zinc-700 text-white"
-                        )
-                      }
-                    >
-                      {person.name}
-                    </Combobox.Option>
-                  ))}
+                  {animes &&
+                    animes.map((anime) => (
+                      <Combobox.Option
+                        key={anime.mal_id}
+                        value={anime}
+                        className={({ active }) =>
+                          classNames(
+                            "cursor-default select-none px-4 py-2",
+                            active && "bg-zinc-700 text-white"
+                          )
+                        }
+                      >
+                        {anime.title}
+                      </Combobox.Option>
+                    ))}
                 </Combobox.Options>
               )}
             </div>
