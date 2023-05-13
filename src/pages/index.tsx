@@ -32,7 +32,7 @@ function MediaCard(media: Media) {
 }
 
 const Home: NextPage = () => {
-  const { data: animes } = api.animes.searchText.useQuery("odd");
+  const { data: animes } = api.animes.getAll.useQuery();
   return (
     <>
       <Head>

@@ -15,7 +15,7 @@ export const animesRouter = createTRPCRouter({
           mode: "insensitive",
         },
       },
-      take: 20,
+      take: 7,
     });
   }),
 });
