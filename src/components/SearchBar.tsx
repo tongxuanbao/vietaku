@@ -3,18 +3,6 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Combobox } from "@headlessui/react";
 import { type RouterOutputs, api } from "~/utils/api";
 
-// const people = [
-//   { id: 1, name: "Leslie Alexander1", url: "/alex1" },
-//   { id: 2, name: "Leslie Alexander2", url: "/alex2" },
-//   { id: 3, name: "Leslie Alexander3", url: "/alex3" },
-//   { id: 4, name: "Leslie Alexander4", url: "/alex4" },
-//   { id: 5, name: "Leslie Alexander5", url: "/alex5" },
-//   { id: 6, name: "Leslie Alexander6", url: "/alex6" },
-//   { id: 7, name: "Leslie Alexander7", url: "/alex7" },
-//   { id: 8, name: "Leslie Alexander8", url: "/alex8" },
-//   // More people...
-// ];
-
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -25,13 +13,6 @@ type Anime = RouterOutputs["animes"]["getAll"][number];
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const { data: animes } = api.animes.searchText.useQuery(query);
-
-  // const filteredPeople =
-  //   query === ""
-  //     ? []
-  //     : people.filter((person) => {
-  //         return person.name.toLowerCase().includes(query.toLowerCase());
-  //       });
 
   return (
     <div className="flex flex-1 items-center px-2">
